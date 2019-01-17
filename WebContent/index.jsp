@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="map.Lookup" %>
+<%@ page import="map.Location" %>
+
 <html>
 <head>
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -45,7 +47,7 @@
 					<input name="place" id="place-input" class="place form-control"
 						placeholder="Search for a place"
 						value="<%=request.getParameter("place") == null ? "" : request.getParameter("place")%>">
-					<button type="submit" id="place-submit" class="place btn btn-dark">Submit</button>
+					<button type="submit" id="place-submit" class="place btn btn-dark">submit</button>
 				</div>
 			</form>
 		</section>
@@ -74,10 +76,10 @@
 	<%
 	String place = request.getParameter("place");
 	if (place != null && !place.isEmpty()) {
-       	String loc = Lookup.lookupPlace(place);
+       	Location loc = Lookup.lookupPlace(place);
        	if (loc != null) {
-        	double lat = Double.parseDouble(loc.split("\t")[0]);
-        	double lon = Double.parseDouble(loc.split("\t")[1]); %>
+        	double lat = loc.getLat();
+        	double lon = loc.getLon(); %>
         	<script>gotoLoc(<%=lat%>, <%=lon%>);</script>
        	<%}
        }%>
