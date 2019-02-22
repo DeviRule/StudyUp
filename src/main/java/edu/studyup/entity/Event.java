@@ -45,12 +45,20 @@ public class Event {
 		this.students = students;
 	}
 
-	 public final Date getDate() {
-		return date;
+
+	public Date getDate() {
+		if (date == null)
+			return null;
+		else
+			return (Date) date.clone();
 	}
 
-	 public final void setDate( Date date) {
-		this.date = date;
+	public void setDate(Date date) {
+		if (this.date==null)
+			this.date = null;
+		else
+			this.date = (Date)date.clone();
+
 	}
 
 	public int getEventID() {
